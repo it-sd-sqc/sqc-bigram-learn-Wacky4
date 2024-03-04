@@ -61,4 +61,18 @@ class MainTest {
   }
 
   // TODO: Create your test(s) below. /////////////////////////////////////////
+  @Test
+  void getId() {
+    Connection db = Main.createConnection();
+    Main.reset();
+    String aWord = "    bz'vm.,bualkc  ";
+    assertDoesNotThrow(
+        () -> {
+            Main.getId(db, aWord);
+            assertTrue(Main.getWordCount(db) == 1);
+            assertTrue(Main.getId(db, aWord) == 1);
+            db.close();
+        }
+    );
+  }
 }
